@@ -11,7 +11,7 @@ struct Node
     Node *mNext;
 
     Node(int data, Node *prev, Node *next)
-    : mData(data), mPrev(prev), mNext(next)
+        : mData(data), mPrev(prev), mNext(next)
     {
     }
 };
@@ -27,7 +27,7 @@ void printInDirectOrder(Node *head)
 
 void printInReversedMode(Node *tail)
 {
-   for (Node *p = tail; p; p = p->mPrev)
+    for (Node *p = tail; p; p = p->mPrev)
     {
         cout << " " << p->mData;
     }
@@ -36,14 +36,29 @@ void printInReversedMode(Node *tail)
 
 void pushBack(Node *&head, Node *&tail, int data)
 {
-    if(head == nullptr)
+    if (head == nullptr)
     {
-    head = tail = new Node(1, nullptr, nullptr);
+        head = tail = new Node(1, nullptr, nullptr);
     }
     else
     {
-    tail->mNext = new Node(data, tail, nullptr);
-    tail = tail->mNext;
+        tail->mNext = new Node(data, tail, nullptr);
+        tail = tail->mNext;
+    }
+}
+
+void insertBefore(Node *&head, Node *cur, int data)
+{
+    if (head == cur)
+    {
+        cur->mPrev = new Node(data, nullptr, cur);
+        head = cur->mPrev;
+    }
+    else
+    {
+        Node *t = new Node(data, cur->mPrev, cur);
+        t->mPrev->mNext = t;
+        t->mNext->mPrev = t;
     }
 }
 
