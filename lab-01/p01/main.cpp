@@ -62,6 +62,36 @@ void insertBefore(Node *&head, Node *cur, int data)
     }
 }
 
+Node *erase(Node *&head, Node *&tail, Node *cur)
+{
+    if (cur == tail && head == tail)
+    {
+        delete head;
+        head = tail = nullptr;
+        return nullptr;
+    }
+    else if (head == cur)
+    {
+        head = head->mNext;
+        head->mPrev = nullptr;
+        delete cur;
+        return head;
+    }
+    else if (cur == tail)
+    {
+        tail = tail->mPrev;
+        tail->mPrev = nullptr;
+        delete cur;
+        return nullptr;
+    }
+
+    Node *t = cur->mNext;
+    cur->mPrev->mNext = cur->mNext;
+    cur->mNext->mPrev = cur->mPrev;
+    delete cur;
+    return t;
+}
+
 int main()
 {
     Node *head = nullptr;
@@ -74,4 +104,32 @@ int main()
 
     printInDirectOrder(head);
     printInReversedMode(tail);
+
+    for (Node *p = head; p != nullptr; p = p->mNext)
+    {
+        if (p->mData % 2 == 0)
+        {
+            insertBefore(head, p, 0);
+        }
+    }
+
+    printInDirectOrder(head);
+    printInReversedMode(tail);
+
+    for (Node *p = head; p != nullptr;)
+    {
+        if (p->mData % 2 == 0)
+        {
+            p = erase(head, tail, p);
+        }
+        else
+        {
+            p = p->mNext;
+        }
+    }
+
+    printInDirectOrder(head);
+    printInReversedMode(tail);
+
+    clear(head, tail);
 }
