@@ -38,13 +38,25 @@ void pushBack(Node *&head, Node *&tail, int data)
 {
     if (head == nullptr)
     {
-        head = tail = new Node(1, nullptr, nullptr);
+        head = tail = new Node(data, nullptr, nullptr);
     }
     else
     {
         tail->mNext = new Node(data, tail, nullptr);
         tail = tail->mNext;
     }
+}
+
+void clear(Node *&head, Node *&tail)
+{
+    for (Node *p = head; p != nullptr;)
+    {
+        Node *t = p->mNext;
+        delete p;
+        p = t;
+    }
+
+    head = tail = nullptr;
 }
 
 void insertBefore(Node *&head, Node *cur, int data)
