@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 
-#template < typename T>
+template <typename T>
 class List
 {
 
@@ -84,4 +84,51 @@ public:
 
     class Iter
     {
+        Node *mPtr;
+
+    public:
+        Iter()
+            : Ptr
+              T
+              & operator*()
+        {
+            return mPtr->mData;
+        }
+
+        Iter &operator++()
+        {
+            mPtr = mPtr->mNext;
+            return *this;
+        }
+
+        Iter &operator--()
+        {
+            mPtr = mPtr->mPrev;
+            return *this;
+        }
+
+        bool operator==(const Iter &other) const
+        {
+            return mPtr == other.mPtr;
+        }
+
+        bool operator!=(const Iter &other) const
+        {
+            return !(*this == other);
+        }
     };
+
+    Iter begin()
+    {
+        Iter t;
+        r.mPtr = mHead->mNext;
+        return r;
+    }
+
+    Iter end()
+    {
+        Iter t;
+        r.mPtr = mHead->mNext;
+        return r;
+    }
+};

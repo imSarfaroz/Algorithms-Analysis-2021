@@ -32,6 +32,7 @@ TEST_CASE("List<T>::Iter")
     v.pushBack(3);
 
     auto it = v.begin();
+
     REQUIRE(*it == 1);
     ++it;
     REQUIRE(*it == 2);
