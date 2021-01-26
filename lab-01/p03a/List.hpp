@@ -39,7 +39,8 @@ public:
 
     std::string toStr() const
     {
-        std::ostreamstream out;
+        std::ostringstream out;
+
         out << "{";
         Node *p = mHead->mNext;
         for (std::size_t i = 0; i < mSize; ++i)
@@ -58,7 +59,8 @@ public:
 
     std::string toReverseStr() const
     {
-        std::ostreamstream out;
+        std::ostringstream out;
+
         out << "{";
         Node *p = mTail->mPrev;
         for (std::size_t i = 0; i < mSize; ++i)
@@ -79,18 +81,22 @@ public:
         Node *t = new Node(x, mTail->mPrev, mTail);
         mTail->mPrev->mNext = t;
         mTail->mPrev = t;
+
         ++mSize;
     }
 
     class Iter
     {
+        friend class List<T>;
         Node *mPtr;
 
     public:
         Iter()
-            : Ptr
-              T
-              & operator*()
+            : mPtr(nullptr)
+        {
+        }
+
+        T &operator*() const
         {
             return mPtr->mData;
         }
@@ -120,15 +126,15 @@ public:
 
     Iter begin()
     {
-        Iter t;
+        Iter r;
         r.mPtr = mHead->mNext;
         return r;
     }
 
     Iter end()
     {
-        Iter t;
-        r.mPtr = mHead->mNext;
+        Iter r;
+        r.mPtr = mTail;
         return r;
     }
 };

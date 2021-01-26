@@ -20,7 +20,7 @@ TEST_CASE("pushback")
 
     REQUIRE(v.size() == 3);
     REQUIRE(v.toStr() == "{1, 2, 3}");
-    REQUIRE(v.toReverseStr() == "{1, 2, 3}");
+    REQUIRE(v.toReverseStr() == "{3, 2, 1}");
 }
 
 TEST_CASE("List<T>::Iter")
@@ -40,4 +40,21 @@ TEST_CASE("List<T>::Iter")
     REQUIRE(*it == 3);
     ++it;
     REQUIRE(it == v.end());
+
+    --it;
+    REQUIRE(*it == 3);
+    --it;
+    REQUIRE(*it == 2);
+    --it;
+    REQUIRE(*it == 1);
+
+    REQUIRE(it == v.begin());
+
+    std::ostringstream out;
+    for(auto e : v)
+    {
+        out << " " << e;
+    }
+
+    REQUIRE(out.str() == " 1 2 3");  
 }
