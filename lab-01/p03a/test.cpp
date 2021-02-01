@@ -23,6 +23,19 @@ TEST_CASE("pushback")
     REQUIRE(v.toReverseStr() == "{3, 2, 1}");
 }
 
+TEST_CASE("clear")
+{
+    List<int> v;
+
+    v.pushBack(1);
+    v.pushBack(2);
+    v.pushBack(3);
+
+    v.clear();
+    REQUIRE(v.size() == 0);
+    REQUIRE(v.toStr)
+}
+
 TEST_CASE("List<T>::Iter")
 {
     List<int> v;
@@ -33,34 +46,22 @@ TEST_CASE("List<T>::Iter")
 
     auto it = v.begin();
 
-    REQUIRE(*it == 1);
+    REQUIRE(it->first == 1);
     ++it;
-    REQUIRE(*it == 2);
+    REQUIRE(it->first == 2);
     ++it;
-    REQUIRE(*it == 3);
+    REQUIRE(it->first == 3);
     ++it;
-    REQUIRE(it == v.end());
+    REQUIRE(it->first == v.end());
 
     --it;
-    REQUIRE(*it == 3);
+    REQUIRE(it->second == 3);
     --it;
-    REQUIRE(*it == 2);
+    REQUIRE(it->second == 2);
     --it;
-    REQUIRE(*it == 1);
+    REQUIRE(it->second == 1);
 
     REQUIRE(it == v.begin());
-
-    std::ostringstream out;
-    for (auto e : v)
-    {
-        out << " " << e;
-    }
-
-    REQUIRE(out.str() == " 1 2 3");
-
-    std::reverse(v.begin(), v.end());
-
-    REQUIRE(v.toStr() == "{3, 2, 1}");
 }
 
 TEST_CASE("erase")
@@ -72,14 +73,37 @@ TEST_CASE("erase")
 
     auto p = v.begin();
     ++p;
-    v.erase(p);
+
+    p = v.erase(p);
 
     REQUIRE(v.size() == 2);
     REQUIRE(v.toStr() == "{1, 3}");
-    REQUIRE(p == 3);
+    REQUIRE(*p == 3);
 
+    p = v.erase(p);
+    REQUIRE(v.size() == 1);
+    REQUIRE(v.toStr() == "{1}");
+    REQUIRE(p == v.end());
+
+    --p;
     p = v.erase(p);
     REQUIRE(v.size() == 0);
     REQUIRE(v.toStr() == "{}");
     REQUIRE(p == v.end());
+}
+
+TEST_CASE("insert")
+{
+    List<int> v;
+    v.pushBack(1);
+    v.pushBack(2);
+    v.pushBack(3);
+
+    auto p = v.begin();
+    ++p;
+    p = v.insert(p, 0);
+
+    REQUIRE(v.size() == 4);
+    REQUIRE(v.toStr() == "{1, 0, 2, 3}");
+    REQUIRE(*p == 0);
 }

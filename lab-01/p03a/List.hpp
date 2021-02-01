@@ -32,6 +32,22 @@ public:
         mTail->mPrev = mHead;
     }
 
+    ~List()
+    {
+        clear();
+
+        delete mHead;
+        delete mTail;
+    }
+
+    void clear()
+    {
+        while (begin() != end())
+        {
+            erase(begin());
+        }
+    }
+
     std::size_t size() const
     {
         return mSize;
@@ -78,51 +94,10 @@ public:
 
     void pushBack(const T &x)
     {
-        Node *t = new Node(x, mTail->mPrev, mTail);
-        mTail->mPrev->mNext = t;
-        mTail->mPrev = t;
-
-        ++mSize;
+        Insert(end(), x);
     }
 
-    class Iter
-    {
-        friend class List<T>;
-        Node *mPtr;
-
-    public:
-        Iter()
-            : mPtr(nullptr)
-        {
-        }
-
-        T &operator*() const
-        {
-            return mPtr->mData;
-        }
-
-        Iter &operator++()
-        {
-            mPtr = mPtr->mNext;
-            return *this;
-        }
-
-        Iter &operator--()
-        {
-            mPtr = mPtr->mPrev;
-            return *this;
-        }
-
-        bool operator==(const Iter &other) const
-        {
-            return mPtr == other.mPtr;
-        }
-
-        bool operator!=(const Iter &other) const
-        {
-            return !(*this == other);
-        }
-    };
+    class Iter;
 
     Iter begin()
     {
@@ -136,5 +111,109 @@ public:
         Iter r;
         r.mPtr = mTail;
         return r;
+    }
+
+    class RIter;
+
+    Iter rbegin()
+    {
+        RIter r;
+        r.mPtr = mTail->mPrev;
+        return r;
+    }
+
+    Iter rend()
+    {
+        RIter r;
+        r.mPtr = mHead;
+        return r;
+    }
+
+    Iter insert(Iter p, const T &x)
+    {
+        Iter t;
+        t.mPtr = new Node(x, p.mPtr->mPrev, p.mPtr);
+        p.mPtr->mPrev = t.mPtr;
+        t.mPtr->mPrev->mNext = t.mPtr;
+
+        ++mSize;
+        return t;
+    }
+    Iter erase(Iter p)
+    {
+        Iter r = p;
+        ++r;
+
+        p.mPtr->mPrev->mNext = p.mPtr->mNext;
+        p.mPtr->mNext->mPrev = p.mPtr->mPrev;
+        delete p.mPtr;
+        --mSize;
+
+        return r;
+    }
+};
+
+template <typename T>
+class List<T>::Iter
+{
+    friend class List<T>;
+    Node *mPtr;
+
+public:
+    using iterator_category = std::bidirectional_iterator_tag;
+    using difference_type = std::ptrdiff_t;
+    using value_type = T;
+    using pointer = T *;
+    using reference = T &;
+
+    Iter()
+        : mPtr(nullptr)
+    {
+    }
+
+    T &operator*() const
+    {
+        return mPtr->mData;
+    }
+
+    T &operator->() const
+    {
+        return &(mPtr->mData);
+    }
+
+    Iter &operator++()
+    {
+        mPtr = mPtr->mNext;
+        return *this;
+    }
+
+    Iter operator++(int)
+    {
+        Iter r = *this;
+        mPtr = mPtr->mNext;
+        return r;
+    }
+
+    Iter &operator--()
+    {
+        mPtr = mPtr->mPrev;
+        return *this;
+    }
+
+    Iter operator--(int)
+    {
+        Iter *r = *this;
+        mPtr = mPtr->mPrev;
+        return r;
+    }
+
+    bool operator==(const Iter &other) const
+    {
+        return mPtr == other.mPtr;
+    }
+
+    bool operator!=(const Iter &other) const
+    {
+        return !(*this == other);
     }
 };
