@@ -51,10 +51,35 @@ TEST_CASE("List<T>::Iter")
     REQUIRE(it == v.begin());
 
     std::ostringstream out;
-    for(auto e : v)
+    for (auto e : v)
     {
         out << " " << e;
     }
 
-    REQUIRE(out.str() == " 1 2 3");  
+    REQUIRE(out.str() == " 1 2 3");
+
+    std::reverse(v.begin(), v.end());
+
+    REQUIRE(v.toStr() == "{3, 2, 1}");
+}
+
+TEST_CASE("erase")
+{
+    List<int> v;
+    v.pushBack(1);
+    v.pushBack(2);
+    v.pushBack(3);
+
+    auto p = v.begin();
+    ++p;
+    v.erase(p);
+
+    REQUIRE(v.size() == 2);
+    REQUIRE(v.toStr() == "{1, 3}");
+    REQUIRE(p == 3);
+
+    p = v.erase(p);
+    REQUIRE(v.size() == 0);
+    REQUIRE(v.toStr() == "{}");
+    REQUIRE(p == v.end());
 }
