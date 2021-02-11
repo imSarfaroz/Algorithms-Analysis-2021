@@ -1,6 +1,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../../doctest.h"
 
+#include <utility>
+
 #include "List.hpp"
 
 TEST_CASE("constructor")
@@ -13,6 +15,9 @@ TEST_CASE("constructor")
 TEST_CASE("pushback")
 {
     List<int> v;
+
+    REQUIRE(v.toStr() == "{}");
+    REQUIRE(v.toReverseStr() == "{}");
 
     v.pushBack(1);
     v.pushBack(2);
@@ -31,9 +36,13 @@ TEST_CASE("clear")
     v.pushBack(2);
     v.pushBack(3);
 
+    REQUIRE(v.size() == 3);
+    REQUIRE(v.toStr() == "{1, 2, 3}");
+
     v.clear();
+
     REQUIRE(v.size() == 0);
-    REQUIRE(v.toStr)
+    REQUIRE(v.toStr() == "{}");
 }
 
 TEST_CASE("List<T>::Iter")
