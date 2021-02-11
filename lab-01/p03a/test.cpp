@@ -55,22 +55,74 @@ TEST_CASE("List<T>::Iter")
 
     auto it = v.begin();
 
-    REQUIRE(it->first == 1);
+    REQUIRE(*it == 1);
     ++it;
-    REQUIRE(it->first == 2);
+    REQUIRE(*it == 2);
     ++it;
-    REQUIRE(it->first == 3);
+    REQUIRE(*it == 3);
     ++it;
-    REQUIRE(it->first == v.end());
+    REQUIRE(*it == v.end());
 
     --it;
-    REQUIRE(it->second == 3);
+    REQUIRE(*it == 3);
     --it;
-    REQUIRE(it->second == 2);
+    REQUIRE(*it== 2);
     --it;
-    REQUIRE(it->second == 1);
+    REQUIRE(*it == 1);
 
     REQUIRE(it == v.begin());
+
+    std::ostringstream out;
+    for(auto e: v)
+    {
+        out << " " << e;
+    }
+
+    REQUIRE(out.str() == "1 2 3");
+
+    std::reverse(v.begin(), v.end());
+
+    REQUIRE(v.toStr() == "{3, 2, 1}");
+}
+
+TEST_CASE("List<T>::RIter")
+{
+    List<int> v;
+
+    v.pushBack(1);
+    v.pushBack(2);
+    v.pushBack(3);
+
+    auto it = v.begin();
+
+    REQUIRE(*it == 1);
+    ++it;
+    REQUIRE(*it == 2);
+    ++it;
+    REQUIRE(*it == 3);
+    ++it;
+    REQUIRE(*it == v.end());
+
+    --it;
+    REQUIRE(*it == 3);
+    --it;
+    REQUIRE(*it == 2);
+    --it;
+    REQUIRE(*it == 1);
+
+    REQUIRE(it == v.begin());
+
+    std::ostringstream out;
+    for (auto e : v)
+    {
+        out << " " << e;
+    }
+
+    REQUIRE(out.str() == "1 2 3");
+
+    std::reverse(v.begin(), v.end());
+
+    REQUIRE(v.toStr() == "{3, 2, 1}");
 }
 
 TEST_CASE("erase")

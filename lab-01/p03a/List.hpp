@@ -94,7 +94,7 @@ public:
 
     void pushBack(const T &x)
     {
-        Insert(end(), x);
+        insert(end(), x);
     }
 
     class Iter;
@@ -115,14 +115,14 @@ public:
 
     class RIter;
 
-    Iter rbegin()
+    RIter rbegin()
     {
         RIter r;
         r.mPtr = mTail->mPrev;
         return r;
     }
 
-    Iter rend()
+    RIter rend()
     {
         RIter r;
         r.mPtr = mHead;
@@ -254,7 +254,7 @@ public:
 
     RIter operator++(int)
     {
-        Iter r = *this;
+        RIter r = *this;
         mPtr = mPtr->mPrev;
         return r;
     }
@@ -267,7 +267,7 @@ public:
 
     RIter operator--(int)
     {
-        Iter *r = *this;
+        RIter *r = *this;
         mPtr = mPtr->mNext;
         return r;
     }
@@ -277,7 +277,7 @@ public:
         return mPtr == other.mPtr;
     }
 
-    bool operator!=(const Iter &other) const
+    bool operator!=(const RIter &other) const
     {
         return !(*this == other);
     }
