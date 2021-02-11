@@ -217,3 +217,68 @@ public:
         return !(*this == other);
     }
 };
+
+template <typename T>
+class List<T>::RIter
+{
+    friend class List<T>;
+    Node *mPtr;
+
+public:
+    using iterator_category = std::bidirectional_iterator_tag;
+    using difference_type = std::ptrdiff_t;
+    using value_type = T;
+    using pointer = T *;
+    using reference = T &;
+
+    RIter()
+        : mPtr(nullptr)
+    {
+    }
+
+    T &operator*() const
+    {
+        return mPtr->mData;
+    }
+
+    T &operator->() const
+    {
+        return &(mPtr->mData);
+    }
+
+    RIter &operator++()
+    {
+        mPtr = mPtr->mPrev;
+        return *this;
+    }
+
+    RIter operator++(int)
+    {
+        Iter r = *this;
+        mPtr = mPtr->mPrev;
+        return r;
+    }
+
+    RIter &operator--()
+    {
+        mPtr = mPtr->mNext;
+        return *this;
+    }
+
+    RIter operator--(int)
+    {
+        Iter *r = *this;
+        mPtr = mPtr->mNext;
+        return r;
+    }
+
+    bool operator==(const RIter &other) const
+    {
+        return mPtr == other.mPtr;
+    }
+
+    bool operator!=(const Iter &other) const
+    {
+        return !(*this == other);
+    }
+};
