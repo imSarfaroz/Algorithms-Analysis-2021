@@ -29,8 +29,14 @@ int main()
             cd.insert(n);
         }
 
-        // calculations
+        for (int i = 0; i < jill; i++)
+        {
+            int n;
+            cin >> n;
+            cd.insert(n);
+        }
 
-        cout << //calculations
+        //calculation
+        cout << (jack + jill) - cd.size() << endl;
     }
 }
