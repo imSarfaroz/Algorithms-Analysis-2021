@@ -8,6 +8,8 @@ int main()
 
     while (true)
     {
+        unordered_set<int> cd;
+
         int jack;
         int jill;
 
@@ -18,5 +20,17 @@ int main()
         {
             break;
         }
+
+        // inserting
+        for (int i = 0; i < jack; i++)
+        {
+            int n;
+            cin >> n;
+            cd.insert(n);
+        }
+
+        // calculations
+
+        cout << //calculations
     }
 }
