@@ -30,5 +30,19 @@ int main()
             auto it = setOfWords.find(word);
             cout << (it != setOfWords.end() ? "YES" : "NO") << endl;
         }
+        else if (cmd == "-")
+        {
+            string word;
+            sinp >> word;
+            cout << (setOfWords.erase(word) ? "YES" : "NO") << endl;
+        }
+        else if (cmd == "#")
+        {
+            for (auto it = setOfWords.begin(); it != setOfWords.end(); ++it)
+            {
+                cout << " " << *it;
+            }
+            cout << endl;
+        }
     }
 }
