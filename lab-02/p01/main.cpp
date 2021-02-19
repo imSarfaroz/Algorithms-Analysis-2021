@@ -13,6 +13,7 @@ int main()
     {
         istringstream sinp(line);
 
+        cout << "Bucket count: " << setOfWords.bucket_count() << endl;
         string cmd;
         sinp >> cmd;
 
@@ -38,10 +39,11 @@ int main()
         }
         else if (cmd == "#")
         {
-            for (auto it = setOfWords.begin(); it != setOfWords.end(); ++it)
-            {
-                cout << " " << *it;
-            }
+            for (size_t)
+                for (auto it = setOfWords.begin(); it != setOfWords.end(); ++it)
+                {
+                    cout << " " << *it;
+                }
             cout << endl;
         }
     }
