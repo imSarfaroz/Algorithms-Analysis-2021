@@ -6,11 +6,27 @@
 
 using namespace std;
 
+struct WorstHashFunction
+{
+    std::size_t operator()(const string &s) const
+    {
+        size_t r = 0;
+        for (char e : s)
+        {
+            r += e;
+        }
+
+        return r;
+    }
+};
+
 int main()
 {
-    unordered_set<string> setOfWords;
+    unordered_set<string, WorstHashFunction> setOfWords;
 
     auto hash = setOfWords.hash_function();
+
+    cout << "max load factor: " << setOfWords.max_load_factor() << endl;
 
     for (string line; getline(cin, line);)
     {
