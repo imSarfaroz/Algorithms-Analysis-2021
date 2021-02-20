@@ -50,7 +50,14 @@ int main()
             {
                 int d = aMap[n.second] - bMap[n.second];
 
-                rCounter += (d < 0 ? (-1)* d : d);
+                if (d < 0)
+                {
+                    rCounter += (-1) * d;
+                }
+                else
+                {
+                    rCounter += d;
+                }
             }
             else
             {
