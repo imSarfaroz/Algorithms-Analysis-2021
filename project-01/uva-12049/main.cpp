@@ -49,20 +49,16 @@ int main()
             if (f != bMap.end())
             {
                 int d = aMap[n.second] - bMap[n.second];
-                // cout << o << ": " << d << endl;
-                if (d < 0)
-                {
-                    rCounter += (-1) * d;
-                }
-                else
-                {
-                    rCounter += d;
-                }
-                // rCounter += (d < 0 ? (-1)* d : d);
+
+                rCounter += (d < 0 ? (-1)* d : d);
             }
             else
             {
+                rCounter += aMap[n.second];
             }
         }
+
+        cout << rCounter << endl;
     }
+
 }
