@@ -15,7 +15,6 @@ struct WorstHashFunction
         {
             r += e;
         }
-
         return r;
     }
 };
