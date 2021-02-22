@@ -5,7 +5,7 @@ using namespace std;
 size_t defaultHashFunc(const string &s)
 {
     size_t r = 0;
-    for(auto c : s)
+    for (auto c : s)
     {
         r += c;
     }
@@ -19,10 +19,15 @@ bool HashSetStr::insert(const string &k)
 
     for (auto p = buckets[index]; p != nullptr; p = p->mNext)
     {
-        if(p->mData == k)
+        if (p->mData == k)
         {
             return false;
         }
+    }
+
+    if (sz == buckets.size())
+    {
+        resize();
     }
 
     buckets[index] = new Node(k, buckets[index]);
@@ -30,4 +35,8 @@ bool HashSetStr::insert(const string &k)
     ++sz;
 
     return true;
+}
+
+void HashSetStr::resize()
+{
 }
