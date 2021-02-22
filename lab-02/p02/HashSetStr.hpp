@@ -8,9 +8,9 @@ class HashSetStr
 {
 public:
     HashSetStr()
-    : buckets(11, nullptr), sz(0)
-    {    
-    } 
+        : buckets(11, nullptr), sz(0)
+    {
+    }
 
     bool insert(const std::string &k);
 
@@ -25,11 +25,13 @@ private:
         std::string mData;
         Node *mNext;
         Node(const std::string &data, Node *next)
-        :mData(data), mNext(next)
+            : mData(data), mNext(next)
         {
         }
     };
 
-    std::vector<Node*> buckets;
+    void resize();
+
+    std::vector<Node *> buckets;
     std::size_t sz;
 };
