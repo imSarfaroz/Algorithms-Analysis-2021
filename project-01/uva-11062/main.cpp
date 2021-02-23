@@ -25,7 +25,7 @@ int main()
         {
             char ch = lineOfWords[i];
 
-            if (isalpha(ch))
+            if (isalpha(ch) || ch == '-')
             {
                 ch = tolower(ch);
                 result += ch;
