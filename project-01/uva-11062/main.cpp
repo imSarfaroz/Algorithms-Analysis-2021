@@ -8,14 +8,26 @@ int main()
 {
     set<string> words;
     string lineOfWords;
+    string result = "";
 
     while (getline(cin, lineOfWords))
     {
-        // need to read words
-        // lowercase
-        // insert to set
-        // print
+        for (int i = 0; i < lineOfWords.size(); i++)
+        {
+            char ch = lineOfWords[i];
 
-        //* erase "-"
+            if(isalpha(ch))
+            {
+                ch = tolower(ch);
+                result += ch;
+
+                words.insert(result);
+            }
+        }
+    }
+
+    for(auto e : words)
+    {
+        cout << e << endl;
     }
 }
