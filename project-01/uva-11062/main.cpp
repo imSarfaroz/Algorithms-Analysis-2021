@@ -35,18 +35,21 @@ int main()
                     words.insert(result);
                 }
             }
-                else
-                {
-                    words.insert(result);
-                   
-                }
+            else
+            {
+                words.insert(result);
+                result = "";
             }
         }
+    }
 
-        for (auto e : words)
+    for (auto e : words)
+    {
+        if (!e.empty())
         {
-                cout << e << endl;   
+            cout << e << endl;
         }
+    }
 
     return 0;
 }
