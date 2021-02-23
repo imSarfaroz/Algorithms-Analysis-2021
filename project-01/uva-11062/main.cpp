@@ -12,22 +12,41 @@ int main()
 
     while (getline(cin, lineOfWords))
     {
+        if (result[result.size() - 1] != '-')
+        {
+            result = "";
+        }
+        else
+        {
+            result.erase(result.end() - 1);
+        }
+
         for (int i = 0; i < lineOfWords.size(); i++)
         {
             char ch = lineOfWords[i];
 
-            if(isalpha(ch))
+            if (isalpha(ch))
             {
                 ch = tolower(ch);
                 result += ch;
 
-                words.insert(result);
+                if (i == lineOfWords.size() - 1 && ch != '-')
+                {
+                    words.insert(result);
+                }
+            }
+                else
+                {
+                    words.insert(result);
+                   
+                }
             }
         }
-    }
 
-    for(auto e : words)
-    {
-        cout << e << endl;
-    }
+        for (auto e : words)
+        {
+                cout << e << endl;   
+        }
+
+    return 0;
 }
