@@ -26,7 +26,8 @@ int main()
             }
 
             result += *(--box.end()) - *(box.begin());
-            
+            box.erase(box.begin());
+            box.erase(--box.end());
         }
 
         cout << result << endl;
