@@ -10,7 +10,8 @@ int main()
 
     while (numOfdays != 0)
     {
-        set<int> box;
+        multiset<int> box;
+        int result = 0;
 
         for (int i = 0; i < numOfdays; i++)
         {
@@ -24,9 +25,12 @@ int main()
                 box.insert(temp);
             }
 
-            // retult
-            // erase box
-            // print
+            result += *(--box.end()) - *(box.begin());
+            
         }
+
+        cout << result << endl;
+        
+        cin >> numOfdays;
     }
 }
