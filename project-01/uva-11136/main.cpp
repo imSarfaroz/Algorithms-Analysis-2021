@@ -10,9 +10,23 @@ int main()
 
     while (numOfdays != 0)
     {
-        // set
-        // reading data
-        // insert in set
-        // print
+        set<int> box;
+
+        for (int i = 0; i < numOfdays; i++)
+        {
+            int ticketsAdded;
+            cin >> ticketsAdded;
+
+            for (int i = 0; i < ticketsAdded; i++)
+            {
+                int temp;
+                cin >> temp;
+                box.insert(temp);
+            }
+
+            // retult
+            // erase box
+            // print
+        }
     }
 }
