@@ -10,8 +10,8 @@ int main()
 
     for (int i = 0; i < numOfCase; i++)
     {
-        multiset<int, int> gl;
-        multiset<int, int> bl;
+        multiset<int, greater<int>> gl;
+        multiset<int, greater<int>> bl;
 
         int bf;
         cin >> bf;
@@ -20,7 +20,7 @@ int main()
         int b;
         cin >> b;
 
-        for (int j = 0; i < g; j++)
+        for (int j = 0; j < g; j++)
         {
             int temp;
             cin >> temp;
@@ -33,7 +33,30 @@ int main()
             cin >> temp;
             bl.insert(temp);
         }
-    }
 
-    return 0;
+        while (true)
+        {
+            if (bl.empty() || gl.empty())
+            {
+                break;
+            }
+
+            int battle = *gl.begin() - *bl.begin();
+
+            bl.erase(bl.begin());
+            gl.erase(gl.begin());
+
+            if (battle < 0)
+            {
+                bl.insert(-battle);
+            }
+            else if (battle > 0)
+            {
+                gl.insert(battle);
+            }
+        }
+    }
+}
+
+return 0;
 }
