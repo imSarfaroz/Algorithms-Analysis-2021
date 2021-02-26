@@ -19,5 +19,21 @@ int main()
         cin >> g;
         int b;
         cin >> b;
+
+        for (int j = 0; i < g; j++)
+        {
+            int temp;
+            cin >> temp;
+            gl.insert(temp);
+        }
+
+        for (int j = 0; j < b; j++)
+        {
+            int temp;
+            cin >> temp;
+            bl.insert(temp);
+        }
     }
+
+    return 0;
 }
