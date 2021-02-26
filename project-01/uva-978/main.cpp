@@ -55,8 +55,29 @@ int main()
                 gl.insert(battle);
             }
         }
-    }
-}
 
-return 0;
+        if (gl.empty() && bl.empty())
+        {
+            cout << "green and blue died";
+        }
+        else if (gl.empty())
+        {
+            cout << "blue wins";
+            for (auto a : bl)
+            {
+                cout << a << endl;
+            }
+        }
+        else if (bl.empty())
+        {
+            cout << "green wins";
+
+            for (auto a : gl)
+            {
+                cout << a << endl;
+            }
+        }
+    }
+
+    return 0;
 }
