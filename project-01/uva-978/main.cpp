@@ -55,14 +55,14 @@ int main()
                 gl.insert(battle);
             }
         }
-
+        
         if (gl.empty() && bl.empty())
         {
-            cout << "green and blue died";
+            cout << "green and blue died" << endl;
         }
         else if (gl.empty())
         {
-            cout << "blue wins";
+            cout << "blue wins" << endl;
             for (auto a : bl)
             {
                 cout << a << endl;
@@ -70,8 +70,8 @@ int main()
         }
         else if (bl.empty())
         {
-            cout << "green wins";
-
+            cout << "green wins" << endl;
+            
             for (auto a : gl)
             {
                 cout << a << endl;
