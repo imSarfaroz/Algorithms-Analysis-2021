@@ -33,7 +33,7 @@ int main()
             getline(cin, lanB[i]);
         }
 
-        cout << "Case " << count++;
+        cout << "Case " << count++ << ": ";
 
         for (int j = 0; j < b; ++j)
         {
@@ -43,6 +43,6 @@ int main()
             }
         }
 
-        cout << languages.size();
+        cout << languages.size() << endl;
     }
 }
