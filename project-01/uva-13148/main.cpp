@@ -12,4 +12,15 @@ int main()
     {
         if (n == 0)
             break;
+
+        if (numbers.find(n) == numbers.end())
+        {
+            cout << "Ordinary" << endl;
+        }
+        else
+        {
+            cout << "Special" << endl;
+        }
     }
+    return 0;
+}
