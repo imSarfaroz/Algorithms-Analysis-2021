@@ -8,7 +8,7 @@ class HashSetStr
 {
 public:
     HashSetStr()
-        : buckets(11, nullptr), sz(0)
+        : buckets(3, nullptr), sz(0)
     {
     }
 
@@ -30,8 +30,9 @@ private:
         }
     };
 
-    void resize();
+    void rehash();
 
     std::vector<Node *> buckets;
     std::size_t sz;
+
 };

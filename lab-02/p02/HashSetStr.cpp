@@ -27,7 +27,8 @@ bool HashSetStr::insert(const string &k)
 
     if (sz == buckets.size())
     {
-        resize();
+        rehash();
+        index = defaultHashFunc(k) % buckets.size();
     }
 
     buckets[index] = new Node(k, buckets[index]);
@@ -37,6 +38,21 @@ bool HashSetStr::insert(const string &k)
     return true;
 }
 
-void HashSetStr::resize()
+void HashSetStr::rehash()
 {
+    vector<Node *> newBuckets(2 * buckets.size() + 1, nullptr);
+
+    for (size_t i = 0; i < buckets.size(); i++)
+    {
+        while (buckets[i] != nullptr)
+        {
+            size_t index = defaultHashFunc(buckets[i]->mData) % newBuckets.size();
+            Node *t = buckets[i];
+            buckets[i] = buckets[i]->mNext;
+            t->mNext = newBuckets[index];
+            newBuckets[index] = t;
+        }
+    }
+
+    buckets.swap(newBuckets);
 }
