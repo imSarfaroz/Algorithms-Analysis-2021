@@ -27,6 +27,49 @@ void HashSetStr::debugPrint() const
     }
 }
 
+bool HashSetStr::find(const string &k)
+{
+    size_t index = defaultHashFunc(k) % buckets.size();
+
+    for (auto p = buckets[index]; p != nullptr; p = p->mNext)
+    {
+        if (p->mData == k)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool HashSetStr::erase(const string &k)
+{
+    size_t index = defaultHashFunc(k) % buckets.size();
+
+    for (Node *pre = nullptr, *cur = buckets[index]; cur != nullptr)
+    {
+        if (cur->mData == k)
+        {
+            if (pre != nullptr)
+            {
+                pre->mNext = cur->mNext;
+            }
+            else
+            {
+                buckets[index] = cur->mNext;
+            }
+
+            Node *t = cur;
+            cur = cur->mNext;
+            delete t;
+
+            --sz;
+            return true;
+        }
+        pre = cur;
+    }
+    return false;
+}
+
 bool HashSetStr::insert(const string &k)
 {
     size_t index = defaultHashFunc(k) % buckets.size();
