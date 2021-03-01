@@ -19,6 +19,8 @@ public:
         return sz;
     }
 
+    void debugPrint() const;
+
 private:
     struct Node
     {
@@ -34,5 +36,4 @@ private:
 
     std::vector<Node *> buckets;
     std::size_t sz;
-
 };

@@ -1,4 +1,5 @@
 #include "HashSetStr.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -11,6 +12,19 @@ size_t defaultHashFunc(const string &s)
     }
 
     return r;
+}
+
+void HashSetStr::debugPrint() const
+{
+    for (size_t i = 0; i < buckets.size(); ++i)
+    {
+        cout << i << ":";
+        for (Node *p = buckets[i]; p != nullptr; p = p->mNext)
+        {
+            cout << " " << p->mData;
+        }
+        cout << endl;
+    }
 }
 
 bool HashSetStr::insert(const string &k)

@@ -8,7 +8,6 @@ TEST_CASE("constructor")
     HashSetStr s;
 
     REQUIRE(s.size() == 0);
-
 }
 
 TEST_CASE("insert")
@@ -19,15 +18,23 @@ TEST_CASE("insert")
     REQUIRE(s.size() == 1);
     REQUIRE_FALSE(s.insert("C++"));
 
+    s.debugPrint();
+
     REQUIRE(s.insert("C"));
     REQUIRE(s.size() == 2);
     REQUIRE_FALSE(s.insert("C"));
+
+    s.debugPrint();
 
     REQUIRE(s.insert("JAVA"));
     REQUIRE(s.size() == 3);
     REQUIRE_FALSE(s.insert("JAVA"));
 
+    s.debugPrint();
+
     REQUIRE(s.insert("Python"));
     REQUIRE(s.size() == 4);
     REQUIRE_FALSE(s.insert("Python"));
+
+    s.debugPrint();
 }
