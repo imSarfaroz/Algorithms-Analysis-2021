@@ -11,8 +11,9 @@ public:
         : buckets(3, nullptr), sz(0)
     {
     }
-
     bool insert(const std::string &k);
+    bool find(const std::string &k);
+    bool erase(const std::string &k);
 
     std::size_t size() const
     {
