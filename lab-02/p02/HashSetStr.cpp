@@ -29,7 +29,7 @@ void HashSetStr::debugPrint() const
 
 bool HashSetStr::find(const string &k)
 {
-    size_t index = defaultHashFunc(k) % buckets.size();
+    size_t index = mHash(k) % buckets.size();
 
     for (auto p = buckets[index]; p != nullptr; p = p->mNext)
     {
@@ -70,7 +70,7 @@ bool HashSetStr::erase(const string &k)
 
 bool HashSetStr::insert(const string &k)
 {
-    size_t index = defaultHashFunc(k) % buckets.size();
+    size_t index = mHash(k) % buckets.size();
 
     for (auto p = buckets[index]; p != nullptr; p = p->mNext)
     {
@@ -83,7 +83,7 @@ bool HashSetStr::insert(const string &k)
     if (sz == buckets.size())
     {
         rehash();
-        index = defaultHashFunc(k) % buckets.size();
+        index = mHash(k) % buckets.size();
     }
 
     buckets[index] = new Node(k, buckets[index]);
@@ -101,7 +101,7 @@ void HashSetStr::rehash()
     {
         while (buckets[i] != nullptr)
         {
-            size_t index = defaultHashFunc(buckets[i]->mData) % newBuckets.size();
+            size_t index = mHash(buckets[i]->mData) % newBuckets.size();
             Node *t = buckets[i];
             buckets[i] = buckets[i]->mNext;
             t->mNext = newBuckets[index];

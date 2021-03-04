@@ -3,11 +3,35 @@
 
 #include "HashSetStr.hpp"
 
-TEST_CASE("constructor")
+TEST_CASE("Default constructor")
 {
     HashSetStr s;
 
     REQUIRE(s.size() == 0);
+}
+
+std::size_t worstHashFunc(const std::string &s)
+{
+    return 42;
+}
+
+TEST_CASE("Constructor with the custom hash  function")
+{
+    HashSetStr s(worstHashFunc);
+
+    s.insert("C++");
+    s.insert("C");
+    s.insert("Java");
+    s.insert("C#");
+    s.insert("Go");
+    s.insert("Rust");
+    s.insert("Python");
+    s.insert("Ruby");
+    s.insert("Kotlin");
+
+    std::cout << "---wrostHashFunc" << std::endl;
+
+    s.debugPrint();
 }
 
 TEST_CASE("insert")

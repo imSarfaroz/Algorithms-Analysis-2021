@@ -4,11 +4,15 @@
 #include <vector>
 #include <string>
 
+std::size_t defaultHashFunc(const std::string &s);
+
 class HashSetStr
 {
 public:
-    HashSetStr()
-        : buckets(3, nullptr), sz(0)
+    using HashFunc = std::size_t (*)(const std::string &);
+
+    HashSetStr(HashFunc hash = defaultHashFunc)
+        : mHash(hash), buckets(3, nullptr), sz(0)
     {
     }
 
@@ -42,6 +46,7 @@ private:
 
     void rehash();
 
+    HashFunc mHash;
     std::vector<Node *> buckets;
     std::size_t sz;
 };
