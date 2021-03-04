@@ -66,7 +66,7 @@ TEST_CASE("erase")
     REQUIRE(s.erase("C"));
     s.debugPrint();
 
-    REQUIRE(s.erase("JAva"));
+    REQUIRE(s.erase("Java"));
     s.debugPrint();
 
     REQUIRE(s.erase("C#"));
@@ -79,4 +79,26 @@ TEST_CASE("erase")
     s.debugPrint();
 
     REQUIRE(s.size() == 3);
+}
+TEST_CASE("clear")
+{
+
+    HashSetStr s;
+
+    s.insert("C++");
+    s.insert("C");
+    s.insert("Java");
+    s.insert("C#");
+    s.insert("Go");
+    s.insert("Rust");
+    s.insert("Python");
+    s.insert("Ruby");
+    s.insert("Kotlin");
+
+    s.clear();
+    REQUIRE(s.size() == 0);
+
+    std::cout << "---after clear---" << std::endl;
+
+    s.debugPrint();
 }

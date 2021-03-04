@@ -45,7 +45,7 @@ bool HashSetStr::erase(const string &k)
 {
     size_t index = defaultHashFunc(k) % buckets.size();
 
-    for (Node *pre = nullptr, *cur = buckets[index]; cur != nullptr)
+    for (Node *pre = nullptr, *cur = buckets[index]; cur != nullptr;)
     {
         if (cur->mData == k)
         {
@@ -110,4 +110,18 @@ void HashSetStr::rehash()
     }
 
     buckets.swap(newBuckets);
+}
+
+void HashSetStr::clear()
+{
+    for (size_t i = 0; i < buckets.size(); ++i)
+    {
+        while (buckets[i] != nullptr)
+        {
+            Node *t = buckets[i];
+            buckets[i] = buckets[i]->mNext;
+            delete t;
+            --sz;
+        }
+    }
 }
