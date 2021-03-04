@@ -38,3 +38,45 @@ TEST_CASE("insert")
 
     s.debugPrint();
 }
+
+TEST_CASE("erase")
+{
+    std::cout << "----" << std::endl;
+
+    HashSetStr s;
+
+    s.insert("C++");
+    s.insert("C");
+    s.insert("Java");
+    s.insert("C#");
+    s.insert("Go");
+    s.insert("Rust");
+    s.insert("Python");
+    s.insert("Ruby");
+    s.insert("Kotlin");
+
+    s.debugPrint();
+
+    REQUIRE_FALSE(s.erase("Hello"));
+    REQUIRE_FALSE(s.erase("World"));
+
+    REQUIRE(s.erase("C++"));
+    s.debugPrint();
+
+    REQUIRE(s.erase("C"));
+    s.debugPrint();
+
+    REQUIRE(s.erase("JAva"));
+    s.debugPrint();
+
+    REQUIRE(s.erase("C#"));
+    s.debugPrint();
+
+    REQUIRE(s.erase("Go"));
+    s.debugPrint();
+
+    REQUIRE(s.erase("Rust"));
+    s.debugPrint();
+
+    REQUIRE(s.size() == 3);
+}

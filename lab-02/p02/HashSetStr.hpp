@@ -11,9 +11,16 @@ public:
         : buckets(3, nullptr), sz(0)
     {
     }
+
+    ~HashSetStr()
+    {
+        clear();
+    }
+
     bool insert(const std::string &k);
     bool find(const std::string &k);
     bool erase(const std::string &k);
+    void clear();
 
     std::size_t size() const
     {

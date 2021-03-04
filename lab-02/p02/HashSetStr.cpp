@@ -58,14 +58,12 @@ bool HashSetStr::erase(const string &k)
                 buckets[index] = cur->mNext;
             }
 
-            Node *t = cur;
-            cur = cur->mNext;
-            delete t;
-
+            delete cur;
             --sz;
             return true;
         }
         pre = cur;
+        cur = cur->mNext;
     }
     return false;
 }
