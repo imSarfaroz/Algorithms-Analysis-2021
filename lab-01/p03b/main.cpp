@@ -6,7 +6,7 @@ using namespace std;
 
 void printInDirectOrder(List<int> &v)
 {
-    
+
     for (auto p = v.begin(); p != v.end(); ++p)
     {
         cout << " " << *p;

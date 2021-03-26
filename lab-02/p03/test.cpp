@@ -25,7 +25,7 @@ TEST_CASE("clear")
 
     t.clear();
 
-    REQUIRE(t.debug == "{1, 4, 3, 6, 9, 7, 5}");
+    REQUIRE(t.debug == "{1, 4, 3, 6, 9, 7, 5}"); 
     REQUIRE(t.size() == 0);
 }
 
