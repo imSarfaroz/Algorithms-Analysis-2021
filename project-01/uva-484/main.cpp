@@ -25,6 +25,6 @@ int main()
 
     for (auto &o : order)
     {
-        cout << o << freq[o] << endl;
+        cout << o << " " << freq[o] << endl;
     }
 }
