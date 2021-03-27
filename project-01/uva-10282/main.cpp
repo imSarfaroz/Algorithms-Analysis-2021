@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -11,10 +12,20 @@ int main()
 
     while (getline(cin, line))
     {
-        // need to read two words from a line
+        istringstream sinp(line);
+        string eng;
+        cin >> eng;
 
-        // calculate
+        string foreign;
+        cin >> foreign;
 
+        dict[foreign] = eng;
+    }
+
+    string input;
+    while (cin >> input)
+    {
+        // find a word if else
         // print
     }
 }
