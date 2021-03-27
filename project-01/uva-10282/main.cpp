@@ -14,10 +14,13 @@ int main()
     {
         istringstream sinp(line);
         string eng;
-        cin >> eng;
+        sinp >> eng;
 
         string foreign;
-        cin >> foreign;
+        sinp >> foreign;
+
+        if (eng.empty())
+            break;
 
         dict[foreign] = eng;
     }
@@ -25,7 +28,13 @@ int main()
     string input;
     while (cin >> input)
     {
-        // find a word if else
-        // print
+        if (!dict[input].empty())
+        {
+            cout << dict[input] << endl;
+        }
+        else
+        {
+            cout << "eh\n";
+        }
     }
 }
