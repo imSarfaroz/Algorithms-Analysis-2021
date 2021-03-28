@@ -18,9 +18,33 @@ int main()
 
         for (int j = 0; j < HW; j++)
         {
-            // read subkect and time
+            string sb;
+            cin >> sb;
+            int time;
+            cin >> time;
 
-            // read a due date
+            sub[sb] = time;
+        }
+
+        int cmpTime;
+        cin >> cmpTime;
+
+        string HWsb;
+        cin >> HWsb;
+
+        cout << "Case " << i << ": ";
+
+        if (sub.find(HWsb))
+        {
+            cout << "Do your own homework!" << endl;
+        }
+        else if (sub[HWsb] <= cmpTime)
+        {
+            cout << "Yesss" << endl;
+        }
+        else if (sub[HWsb] <= (cmpTime + 5))
+        {
+            cout << "Late" << endl;
         }
     }
 }
