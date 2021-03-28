@@ -32,9 +32,9 @@ int main()
         string HWsb;
         cin >> HWsb;
 
-        cout << "Case " << i << ": ";
+        cout << "Case " << i + 1 << ": ";
 
-        if (sub.find(HWsb))
+        if (sub.find(HWsb) == sub.end() || sub[HWsb] > (cmpTime + 5))
         {
             cout << "Do your own homework!" << endl;
         }
