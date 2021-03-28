@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,7 +11,8 @@ int main()
     {
         int numOfCases;
         cin >> numOfCases;
-
+        if (numOfCases == 0)
+            break;
         map<vector<int>, int> cmb;
 
         for (int i = 0; i < numOfCases; i++)
@@ -20,6 +22,7 @@ int main()
             {
                 cin >> x;
             }
+            sort(v.begin(), v.end());
             ++cmb[v];
         }
 
