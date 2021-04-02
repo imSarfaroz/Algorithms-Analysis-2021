@@ -14,7 +14,7 @@ int main()
     string first;
     getline(cin, first);
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 1; i <= n; ++i)
     {
         getline(cin, first);
 
@@ -25,7 +25,7 @@ int main()
     cin >> test;
     getline(cin, first);
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < test; ++i)
     {
         getline(cin, first);
 
