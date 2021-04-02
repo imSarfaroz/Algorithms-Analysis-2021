@@ -30,9 +30,11 @@ int main()
 
         for (auto &a : t)
         {
-            cout << setprecision(5) << fixed;
-            cout << a.first << " " << a.second * (100) / c << endl;
+            cout << setprecision(4) << fixed;
+            cout << a.first << " " << a.second * (double)(100) / c << endl;
         }
 
+        if (i < (n - 1))
+            cout << endl;
     }
 }
