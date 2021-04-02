@@ -11,5 +11,15 @@ int main()
 
     unordered_map<string, string> slogans;
 
-    // read line
+    string first;
+    getline(cin, first);
+
+    for (int i = 1; i <= n; ++i)
+    {
+        getline(cin, first);
+
+        getline(cin, slogans[first]);
+    }
+
+    // test cases
 }
