@@ -35,10 +35,10 @@ int main()
         {
             for (auto j : chocolates[i])
             {
-                auto p1 = chocolates[(i + 1)].find(j);
-                auto p2 = chocolates[(i + 2)].find(j);
+                auto p1 = chocolates[(i + 1) % 3].find(j);
+                auto p2 = chocolates[(i + 2) % 3].find(j);
 
-                if (p1 == chocolates[(i + 1)].end() && p2 == chocolates[(i + 2)].end())
+                if (p1 == chocolates[(i + 1) % 3].end() && p2 == chocolates[(i + 2) % 3].end())
                 {
                     counter[i][0]++;
                 }
@@ -46,8 +46,8 @@ int main()
 
             for (auto j : every_choco)
             {
-                if (chocolates[i].find(j) == chocolates[i].end() && chocolates[(i + 1)].find(j) != chocolates[(i + 1)].end() &&
-                    chocolates[(i + 2)].find(j) != chocolates[(i + 2)].end())
+                if (chocolates[i].find(j) == chocolates[i].end() &&
+                    chocolates[(i + 1) % 3].find(j) != chocolates[(i + 1) % 3].end() && chocolates[(i + 2) % 3].find(j) != chocolates[(i + 2) % 3].end())
                 {
                     counter[i][1]++;
                 }
