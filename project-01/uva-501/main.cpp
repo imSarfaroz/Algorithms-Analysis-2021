@@ -39,7 +39,20 @@ int main(void)
                 }
                 sz++;
             }
+            if (isFirst)
+            {
+                it = num.begin();
+                isFirst = false;
+            }
+            else
+            {
+                it++;
+            }
+            cout << *it << endl;
+        }
+        if (n)
+        {
+            cout << endl;
         }
     }
-}
 }
