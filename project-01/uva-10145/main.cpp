@@ -15,6 +15,8 @@ int main()
 
     for (int i = 0; i < numOfTest; i++)
     {
+        if (i)
+            cout << endl;
         getline(cin, line);
 
         unordered_map<int, bool> ignored;
@@ -25,6 +27,7 @@ int main()
 
         while (getline(cin, line) && line != "#")
         {
+
             char a;
             int id, owned;
 
@@ -36,7 +39,7 @@ int main()
             {
                 cout << "IGNORED" << endl;
             }
-            else if (occured[owned] && (mode[owned] == 'X' || a == 'X'))
+            else if (occured[owned] && (mode[owned] == 'X' || a == 'X') && owner[owned].size() - owner[owned].count(id))
             {
                 cout << "DENIED" << endl;
                 ignored[id] = true;
@@ -44,7 +47,7 @@ int main()
             else
             {
                 cout << "GRANTED" << endl;
-                if (a == 'X')
+                if (a == 'X' || mode[owned] == 'X')
                 {
                     mode[owned] = 'X';
                 }
