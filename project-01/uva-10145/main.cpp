@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <sstream>
+#include <set>
 
 using namespace std;
 
@@ -17,6 +18,10 @@ int main()
         getline(cin, line);
 
         unordered_map<int, bool> ignored;
+        unordered_map<int, bool> occured;
+
+        unordered_map<int, char> mode;
+        unordered_map<int, set<int>> owner;
 
         while (getline(cin, line) && line != "#")
         {
@@ -31,8 +36,26 @@ int main()
             {
                 cout << "IGNORED" << endl;
             }
+            else if (occured[owned] && (mode[owned] == 'X' || a == 'X'))
+            {
+                cout << "DENIED" << endl;
+                ignored[id] = true;
+            }
+            else
+            {
+                cout << "GRANTED" << endl;
+                if (a == 'X')
+                {
+                    mode[owned] = 'X';
+                }
+                else
+                {
+                    mode[owned] = 'S';
+                }
 
-            // DENIED  GRANTED  logic
+                owner[owned].insert(id);
+                occured[owned] = true;
+            }
         }
     }
 }
