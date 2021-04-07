@@ -31,6 +31,7 @@ public:
     {
         if (col == mN)
         {
+            print();
         }
         else
         {
@@ -46,24 +47,25 @@ public:
         }
     }
 
-    void canPutQueen(int row, int col)
+    bool canPutQueen(int row, int col)
     {
         return !mRows[row] && !mDiag1[row + col] && !mDiag2[col - row + mN - 1];
     }
 
     void putQueen(int row, int col)
     {
-        return mRows[row] = mDiag1[row + col] = mDiag2[col - row + mN - 1] = false;
-        mSolution[col] = raw;
+        mRows[row] = mDiag1[row + col] = mDiag2[col - row + mN - 1] = true;
+        mSolution[col] = row;
     }
 
     void takeQueen(int row, int col)
     {
+        mRows[row] = mDiag1[row + col] = mDiag2[col - row + mN - 1] = false;
     }
 
     void print()
     {
-        cout << ++mCount;
+        cout << ++mCount << ":";
         for (auto e : mSolution)
         {
             cout << " " << e;
