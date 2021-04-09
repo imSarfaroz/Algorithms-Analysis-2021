@@ -7,29 +7,15 @@ int num, total;
 int p;
 int con[100];
 
-void isSquare(int cur, int pos);
-
-int main()
-{
-    cin >> num;
-
-    while (num--)
-    {
-        cin >> p;
-
-        isSquare(1, 0);
-        cout << total;
-    }
-}
-
 void isSquare(int cur, int pos)
 {
-    if (pos == num)
+    if (pos == p)
         return;
 
     if (con[pos] == 0)
     {
         total++;
+        con[pos] = cur;
         return isSquare(cur + 1, pos);
     }
 
@@ -39,8 +25,24 @@ void isSquare(int cur, int pos)
         if ((r * r) == con[i] + cur)
         {
             total++;
+            con[i] = cur;
             return isSquare(cur + 1, pos);
         }
     }
+
     isSquare(cur, pos + 1);
+}
+
+int main()
+{
+    cin >> num;
+    
+    while (num--)
+    {
+        total = 0;
+        cin >> p;
+
+        isSquare(1, 0);
+        cout << total << endl;
+    }
 }
