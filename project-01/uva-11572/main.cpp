@@ -13,8 +13,27 @@ int main()
     {
         int numSnow;
         cin >> numSnow;
-        int size = 0;
-        int max = 0;
-        int repeated = 0;
+        int start = 1;
+        int sol = 0;
+
+        for (int i = 1; i <= numSnow; i++)
+        {
+            int n;
+            cin >> n;
+            if (snows[n] >= start)
+            {
+                if (i - start > sol)
+                {
+                    sol = i - start;
+                    start = snows[n] + 1;
+                }
+            }
+            snows[n] = i;
         }
+        if (numSnow + 1 - start > sol)
+        {
+            sol = numSnow + 1 - start;
+        }
+        cout << sol << endl;
+    }
 }
