@@ -17,7 +17,10 @@ int main()
     {
         string a;
         cin >> a;
-        float b;
+        float c;
+        cin >> c;
+        c *= 10;
+        int b = (int)c;
 
         ballot[a] = b;
     }
@@ -41,27 +44,28 @@ int main()
         }
         int n;
         cin >> n;
+        n *= 10;
 
-        cout << "Case #" << j;
+        cout << "Guess #" << j;
         if (s == ">")
         {
-            cout << (count > n ? "was correct." : "was incorrect") << endl;
+            cout << (count > n ? " was correct." : " was incorrect.") << endl;
         }
         else if (s == "<")
         {
-            cout << (count < n ? "was correct." : "was incorrect") << endl;
+            cout << (count < n ? " was correct." : " was incorrect.") << endl;
         }
         else if (s == ">=")
         {
-            cout << (count >= n ? "was correct." : "was incorrect") << endl;
+            cout << (count >= n ? " was correct." : " was incorrect.") << endl;
         }
         else if (s == "<=")
         {
-            cout << (count <= n ? "was correct." : "was incorrect") << endl;
+            cout << (count <= n ? " was correct." : " was incorrect.") << endl;
         }
         else if (s == "=")
         {
-            cout << (count == n ? "was correct." : "was incorrect") << endl;
+            cout << (count == n ? " was correct." : " was incorrect.") << endl;
         }
     }
 }
