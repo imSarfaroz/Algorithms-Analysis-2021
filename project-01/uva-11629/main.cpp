@@ -18,7 +18,6 @@ int main()
         string a;
         cin >> a;
         float b;
-        cin >> b;
 
         ballot[a] = b;
     }
@@ -29,9 +28,12 @@ int main()
         cin >> s;
         int count = 0;
 
-        while(true)
+        while (true)
         {
-            if(s != "+")
+            if (s == ">" or s == "<" or s == "<=" or s == ">=" or s == "=")
+                break;
+
+            if (s != "+")
             {
                 count += ballot[s];
             }
@@ -41,9 +43,25 @@ int main()
         cin >> n;
 
         cout << "Case #" << j;
-        if(s == ">")
+        if (s == ">")
         {
-            cout << (count > n ? "was correct." : "was incorrect");
+            cout << (count > n ? "was correct." : "was incorrect") << endl;
+        }
+        else if (s == "<")
+        {
+            cout << (count < n ? "was correct." : "was incorrect") << endl;
+        }
+        else if (s == ">=")
+        {
+            cout << (count >= n ? "was correct." : "was incorrect") << endl;
+        }
+        else if (s == "<=")
+        {
+            cout << (count <= n ? "was correct." : "was incorrect") << endl;
+        }
+        else if (s == "=")
+        {
+            cout << (count == n ? "was correct." : "was incorrect") << endl;
         }
     }
 }
