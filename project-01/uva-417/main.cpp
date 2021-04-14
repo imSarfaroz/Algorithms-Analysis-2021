@@ -54,6 +54,25 @@ int main()
         }
     }
 
+    s = string(5, 'a');
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = i + 1; j < 26; j++)
+        {
+            for (int k = j + 1; k < 26; k++)
+            {
+                for (int l = k + 1; l < 26; l++)
+                {
+                    for (int g = l + 1; g < 26; g++)
+                    {
+                        s[0] = 'a' + i, s[1] = 'a' + j, s[2] = 'a' + k, s[3] = 'a' + l, s[4] = 'a' + g;
+                        letters[s] = num++;
+                    }
+                }
+            }
+        }
+    }
+
     while (cin >> s)
     {
         cout << letters[s] << endl;
