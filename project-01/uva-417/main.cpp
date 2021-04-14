@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     unordered_map<string, int> letters;
-    int num = 0;
+    int num = 1;
     string s;
 
     for (int i = 0; i < 26; i++)
@@ -15,5 +15,8 @@ int main()
         letters[s] = num++;
     }
 
-    cout << letters[s] << endl;
+    while (cin >> s)
+    {
+        cout << letters[s] << endl;
+    }
 }
