@@ -11,6 +11,7 @@ bool dfs(int a, int b, char c);
 int main()
 {
     int count = 0;
+    
 
     while (cin >> num)
     {
@@ -34,7 +35,7 @@ int main()
         {
             if (game[0][i] == 'b')
             {
-                for (int a = 0; a < num; i++)
+                for (int a = 0; a < num; a++)
                 {
                     for (int b = 0; b < num; b++)
                     {
@@ -63,45 +64,52 @@ int main()
 
 bool dfs(int a, int b, char c)
 {
-    if (a == num - 1)
+    if(a == num - 1)
     {
         return true;
     }
 
-    if (a > 0 && b > 0 && game[a - 1][b - 1] == c)
+    if (a > 0 && b > 0 && game[a - 1][b - 1] == c && !been[a - 1][b - 1])
     {
         been[a - 1][b - 1] = true;
         if (dfs(a - 1, b - 1, c))
             return true;
     }
 
-    if (a > 0 && game[a - 1][b] == c)
+    if (a > 0 && !been[a - 1][b] && game[a - 1][b] == c)
     {
         been[a - 1][b] = true;
         if (dfs(a - 1, b, c))
             return true;
     }
 
-    if (b > 0 && game[a][b - 1] == c)
+    if (b > 0 && !been[a][b - 1] && game[a][b - 1] == c)
     {
         been[a][b - 1] = true;
         if (dfs(a, b - 1, c))
             return true;
     }
 
-    if (b < num - 1 && game[a][b + 1] == c)
+    if (b < num - 1 && !been[a][b + 1] && game[a][b + 1] == c)
     {
         been[a][b + 1] = true;
         if (dfs(a, b + 1, c))
             return true;
     }
 
-    if (a < num - 1 && game[a + 1][b] == c)
+    if (a < num - 1 && !been[a + 1][b] && game[a + 1][b] == c)
+    {
+        been[a][b] = true;
+        if (dfs(a, b + 1, c))
+            return true;
+    }
+
+    if (a < num - 1 && b < num - 1 && !been[a + 1][b + 1] && game[a + 1][b + 1] == c)
     {
         been[a + 1][b] = true;
         if (dfs(a + 1, b, c))
             return true;
     }
 
-    return false;
+        return false;
 }
