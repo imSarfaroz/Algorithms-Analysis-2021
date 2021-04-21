@@ -2,12 +2,15 @@
 
 using namespace std;
 
+int num;
+char game[100][100];
+bool been[100][100];
+
+bool dfs(int a, int b, char c);
+
 int main()
 {
-    int num;
     int count = 0;
-    char game[100][100];
-    bool been[100][100];
 
     while (cin >> num)
     {
@@ -26,7 +29,7 @@ int main()
 
         bool hasWon = false;
 
-        // cheking winner
+        // cheking if b winner
         for (int i = 0; i < num; i++)
         {
             if (game[0][i] == 'b')
@@ -39,7 +42,7 @@ int main()
                     }
                 }
                 been[0][i] = true;
-                hasWon = dfs();
+                hasWon = dfs(0, i, 'b');
                 if (hasWon)
                     break;
             }
@@ -56,4 +59,20 @@ int main()
                  << "W" << endl;
         }
     }
+}
+
+bool dfs(int a, int b, char c)
+{
+    if (a == num - 1)
+    {
+        return true;
+    }
+
+    if (a > 0 && b > 0 && game[a - 1][b - 1] == c)
+    {
+        if (dfs(a - 1, b - 1, c))
+            return true;
+    }
+
+    return false;
 }
