@@ -99,15 +99,15 @@ bool dfs(int a, int b, char c)
 
     if (a < num - 1 && !been[a + 1][b] && game[a + 1][b] == c)
     {
-        been[a][b] = true;
-        if (dfs(a, b + 1, c))
+        been[a + 1][b] = true;
+        if (dfs(a + 1, b, c))
             return true;
     }
 
     if (a < num - 1 && b < num - 1 && !been[a + 1][b + 1] && game[a + 1][b + 1] == c)
     {
-        been[a + 1][b] = true;
-        if (dfs(a + 1, b, c))
+        been[a + 1][b + 1] = true;
+        if (dfs(a + 1, b + 1, c))
             return true;
     }
 
