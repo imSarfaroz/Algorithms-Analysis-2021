@@ -2,6 +2,8 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <string>
+#include <stdexcept>
 
 using namespace std;
 
@@ -18,6 +20,10 @@ void dfs(int v, const vector<vector<int>> &graph, vector<Color> &colors, vector<
 
     for (auto &e : graph[v])
     {
+        if(colors[e] == Color::Red)
+        {
+            throw runtime_error("Error: input is not a Directed Acyclic graph. Vertex: " + to_string(e + 1));
+        }
         if (colors[e] == Color::White)
         {
             dfs(e, graph, colors, order);
@@ -29,6 +35,7 @@ void dfs(int v, const vector<vector<int>> &graph, vector<Color> &colors, vector<
 }
 
 int main()
+try
 {
     string line;
 
@@ -67,4 +74,7 @@ int main()
         cout << " " << e + 1;
     }
     cout << "\n";
+}
+catch (runtime_error& e){
+    cerr << e.what() << endl;
 }
