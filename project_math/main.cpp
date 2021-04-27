@@ -16,7 +16,7 @@ bool isConnected()
         been[i] = 0;
 
     int here;
-    
+
     vector<int> queue = (numOfVer > 0 ? vector<int>(1, 0) : vector<int>(0));
     while (!queue.empty())
     {
@@ -30,11 +30,6 @@ bool isConnected()
             been[e] = 1;
         }
     }
-
-    // for (int i = 0; i < v; ++i)
-    // {
-    //     cout << i << ": " << been[i] << "\n";
-    // }
 
     for (int i = 0; i < numOfVer; ++i)
     {
@@ -55,7 +50,7 @@ int main()
     cout << "Num of Vertices: ";
     cin >> numOfVer;
 
-    if(numOfVer == 0)
+    if (numOfVer == 0)
     {
         numOfEdges = 0;
     }
@@ -77,9 +72,7 @@ int main()
         {
             cout << "choose 'directed' or 'undirected'." << endl;
         }
-        
     }
-
 
     edges = vector<vector<int>>(numOfVer, vector<int>());
     int again = 0;
@@ -87,30 +80,24 @@ int main()
     {
         again = 0;
         cout << "provide the edge #" << i << " (x y): ";
-        do {
-            if (again){
+        do
+        {
+            if (again)
+            {
                 cout << "please, don't joke around! ";
             }
             cout << "0 <= value < " << numOfVer << "\n";
             cin >> ver >> edg;
             again = 1;
+
         } while (!(ver >= 0 && ver < numOfVer && edg >= 0 && edg < numOfVer));
-        edges[ver].push_back(edg);  
+        edges[ver].push_back(edg);
 
         if (type == "undirected")
         {
             edges[edg].push_back(ver);
         }
     }
-
-    // cout << "edges:\n";
-    // for (int i = 0; i < v; ++i){
-    //     cout << i << ":";
-    //     for (auto &el : edges[i]){
-    //         cout << " " << el;
-    //     }
-    //     cout << "\n";
-    // } cout << "end\n";
 
     if (isConnected())
     {
