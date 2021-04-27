@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,59 +12,59 @@ enum class Color
     Black
 };
 
-void dfs(int v, const vector<vector<int>> &graph, vector<Color> &colors, vector<int> &component)
+void dfs(int v, const vector<vector<int>> &graph, vector<Color> &colors, vector<int> &order)
 {
     colors[v] = Color::Red;
-
-    component.push_back(v);
 
     for (auto &e : graph[v])
     {
         if (colors[e] == Color::White)
         {
-            dfs(e, graph, colors, component);
+            dfs(e, graph, colors, order);
         }
     }
+
+    order.push_back(v);
+    colors[v] = Color::Black;
 }
 
 int main()
 {
-    int nVertices;
-    cin >> nVertices;
+    string line;
 
+    getline(cin, line);
+    int nVertices = stoi(line);
     vector<vector<int>> graph(nVertices);
 
-    for (int r = 0; r < nVertices; r++)
+    for (int i = 0; i < nVertices; i++)
     {
-        for (int c = 0; c < nVertices; ++c)
+        getline(cin, line);
+        if (line != "-")
         {
-            char ch;
-            cin >> ch;
-            if (ch == '1')
+            istringstream sinp(line);
+            for (int v; sinp >> v;)
             {
-                graph[r].push_back(c);
+                graph[i].push_back(v - 1);
             }
         }
     }
+
     vector<Color> colors(nVertices, Color::White);
 
-    int nComponents = 0;
+    vector<int> order;
+
     for (int i = 0; i < graph.size(); i++)
     {
         if (colors[i] == Color::White)
         {
-            ++nComponents;
-
-            vector<int> curComponent;
-            dfs(i, graph, colors, curComponent);
-
-            cout << nComponents << ": ";
-
-            for (auto e : curComponent)
-            {
-                cout << " " << endl;
-            }
-            cout << endl;
+            dfs(i, graph, colors, order);
         }
     }
+    reverse(order.begin(), order.end());
+
+    for (int e : order)
+    {
+        cout << " " << e + 1;
+    }
+    cout << "\n";
 }
