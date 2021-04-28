@@ -87,4 +87,22 @@ int main()
     {
         cout << e.first << ": " << e.second << endl;
     }
+
+    vector<string> path;
+    string curVertex = dst;
+
+    while (preds[curVertex] != kNill)
+    {
+        path.push_back(curVertex);
+        curVertex = preds[curVertex];
+    }
+
+    path.push_back(src);
+
+    reverse(path.begin(), path.end());
+    for (const auto &e : path)
+    {
+        cout << " " << e;
+    }
+    cout << endl;
 }
