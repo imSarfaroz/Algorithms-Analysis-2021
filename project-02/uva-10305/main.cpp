@@ -1,20 +1,36 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 int prob[100][100];
 int vis[100];
 
+stack<int> s;
+
+int n;
+int m;
+
 void dfs(int z)
 {
+    for (int i = 1; i <= n; i++)
+    {
+        if (prob[z][i] == 1)
+        {
+            if (vis[i] == -1)
+                return;
+            else if (!vis[i])
+                dfs(i);
+        }
+    }
+
+    s.push(z);
 }
 
 int main()
 {
-    int n;
-    int m;
 
     while (cin >> n >> m)
     {
@@ -37,5 +53,13 @@ int main()
                 dfs(i);
             }
         }
+
+        while (!s.empty())
+        {
+            cout << s.top() << " ";
+            s.pop();
+        }
+
+        cout << endl;
     }
 }
