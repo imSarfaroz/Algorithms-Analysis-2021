@@ -15,6 +15,9 @@ int m;
 
 void dfs(int z)
 {
+
+    vis[z] = -1;
+
     for (int i = 1; i <= n; i++)
     {
         if (prob[z][i] == 1)
@@ -27,6 +30,7 @@ void dfs(int z)
     }
 
     s.push(z);
+    vis[z] = 1;
 }
 
 int main()
@@ -46,7 +50,7 @@ int main()
             prob[a][b] = 1;
         }
 
-        for (int i = 0; i <= n; i++)
+        for (int i = 1; i <= n; i++)
         {
             if (vis[i] != 1)
             {
@@ -62,4 +66,5 @@ int main()
 
         cout << endl;
     }
+    return 0;
 }
