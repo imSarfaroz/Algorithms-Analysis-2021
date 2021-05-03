@@ -54,7 +54,7 @@ int binarySearch(vector<int> &v, int x)
         }
         else if (v[q] < x)
         {
-            p = q;
+            p = q + 1;
         }
     }
     return -1;

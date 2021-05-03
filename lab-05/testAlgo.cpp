@@ -16,5 +16,7 @@ TEST_CASE("Insertion Sort", "[byInsertion]")
 TEST_CASE("Binary Search", "[Searching]")
 {
     vector<int> v = {3, 4, 2, 1, 0, 5, 10, 7, 8, 9, 6};
+    insertionSort(v);
     REQUIRE(binarySearch(v, 4) == 4);
+    REQUIRE(binarySearch(v, 11) == -1);
 }
