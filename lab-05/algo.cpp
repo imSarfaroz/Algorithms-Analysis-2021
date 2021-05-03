@@ -35,3 +35,27 @@ void insertionSort(vector<int> &v)
             j = j - 1;
         }
     }
+}
+
+int binarySearch(vector<int> &v, int x)
+{
+    int p = 0;
+    int r = v.size() - 1;
+    while (p <= r)
+    {
+        int q = (p + r) / 2;
+        if (v[q] == x)
+        {
+            return x;
+        }
+        if (v[q] > x)
+        {
+            r = q - 1;
+        }
+        else if (v[q] < x)
+        {
+            p = q;
+        }
+    }
+    return -1;
+}
