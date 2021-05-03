@@ -5,6 +5,21 @@
 
 using namespace std;
 
+string toStr(vector<int> &v)
+{
+    string str = "{";
+
+    for (int i = 0; i < v.size(); ++i)
+    {
+        str += to_string(v[i]);
+        if (i != v.size() - 1)
+        {
+            str += ", ";
+        }
+    }
+    str += "}";
+    return str;
+}
 
 void insertionSort(vector<int> &v)
 {
@@ -18,5 +33,5 @@ void insertionSort(vector<int> &v)
             v[j - 1] = v[j];
             v[j] = temp;
             j = j - 1;
+        }
     }
-}
