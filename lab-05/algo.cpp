@@ -110,4 +110,16 @@ vector<int> mergeSort(std::vector<int> &v)
     {
         arrayOne.push_back(v[i]);
     }
+
+    vector<int> arrayTwo;
+    for (int i = q + 1; i <= r; ++i)
+    {
+        arrayTwo.push_back(v[i]);
+    }
+
+    arrayOne = merg
+        eSort(arrayOne);
+    arrayTwo = mergeSort(arrayTwo);
+
+    return merge(arrayOne, arrayTwo);
 }
