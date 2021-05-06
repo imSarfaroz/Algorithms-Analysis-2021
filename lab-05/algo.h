@@ -7,5 +7,6 @@
 std::string toStr(std::vector<int> &v);
 void insertionSort(std::vector<int> &v);
 int binarySearch(std::vector<int> &v, int x);
+void mergeSort(std::vector<int> &m);
 
 #endif

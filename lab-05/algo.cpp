@@ -59,3 +59,7 @@ int binarySearch(vector<int> &v, int x)
     }
     return -1;
 }
+
+void mergeSort(std::vector<int> &m)
+{
+}
