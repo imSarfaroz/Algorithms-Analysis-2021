@@ -97,10 +97,8 @@ int Graph::readAdj()
     {
         for (int j = 0; j < v; ++j)
         {
-            // DEBUG: cout << i << " to " << j << ": ";
             if (cin >> c)
             {
-                // DEBUG: cout << "   I have read " << c << "\n";
                 if (c != 0)
                 {
                     edjes[i].push_back(j);
@@ -112,7 +110,6 @@ int Graph::readAdj()
                 resetEdjes();
                 return 0;
             }
-            //DEBUG: cout << "\n";
         }
     }
     return 1;
@@ -158,7 +155,7 @@ int Graph::check()
     {
         if (undir())
         {
-            return 3; //undirected connected
+            return 3;
         }
         count += strongCheck();
     }
@@ -246,17 +243,14 @@ int Graph::strongCheck()
 {
     for (int i = 0; i < v; ++i)
     {
-        // DEBUG: cout << "strong Check: i = " << i << "\t";
         if (!dfs(i))
             return 0;
-        // DEBUG: cout << "success...\n";
     }
     return 1;
 }
 
 int Graph::dfs(int x)
 {
-    // DEBUG: cout << "\n inside " << x << "\n";
     vector<int> q(1, x);
     vector<int> been(v, 0);
     been[x] = 1;
@@ -265,20 +259,19 @@ int Graph::dfs(int x)
     {
         x = q.back();
         q.pop_back();
-        // DEBUG: cout << "  checking connections from " << x << ":\t";
+
         for (const auto &n : edjes[x])
         {
             if (!been[n])
             {
-                // DEBUG: cout << " " << n;
                 q.push_back(n);
                 been[n] = 1;
                 cnt++;
             }
         }
-        // DEBUG: cout << "\n";
     }
     if (cnt == v)
         return 1;
+        
     return 0;
 }

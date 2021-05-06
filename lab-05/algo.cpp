@@ -74,6 +74,7 @@ vector<int> merge(vector<int> &a, vector<int> &b)
         else
         {
             c.push_back(a[0]);
+            a.erase(a.begin());
         }
     }
 
@@ -87,11 +88,26 @@ vector<int> merge(vector<int> &a, vector<int> &b)
         else if (b.empty())
         {
             c.push_back(a[0]);
+            a.erase(a.begin());
         }
     }
     return c;
 }
 
-void mergeSort(std::vector<int> &m)
+vector<int> mergeSort(std::vector<int> &v)
 {
+    if (v.size() == 1)
+    {
+        return v;
+    }
+
+    int p = 0;
+    int r = v.size() - 1;
+    int q = r / 2;
+
+    vector<int> arrayOne;
+    for (int i = p; i <= q; ++i)
+    {
+        arrayOne.push_back(v[i]);
+    }
 }
