@@ -60,6 +60,38 @@ int binarySearch(vector<int> &v, int x)
     return -1;
 }
 
+vector<int> merge(vector<int> &a, vector<int> &b)
+{
+    vector<int> c;
+
+    while (!a.empty() && !b.empty())
+    {
+        if (a[0] > b[0])
+        {
+            c.push_back(b[0]);
+            b.erase(b.begin());
+        }
+        else
+        {
+            c.push_back(a[0]);
+        }
+    }
+
+    while (!a.empty() || !b.empty())
+    {
+        if (a.empty())
+        {
+            c.push_back(b[0]);
+            b.erase(b.begin());
+        }
+        else if (b.empty())
+        {
+            c.push_back(a[0]);
+        }
+    }
+    return c;
+}
+
 void mergeSort(std::vector<int> &m)
 {
 }

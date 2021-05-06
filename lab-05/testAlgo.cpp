@@ -21,7 +21,7 @@ TEST_CASE("Binary Search", "[Searching]")
     REQUIRE(binarySearch(v, 11) == -1);
 }
 
-TEST_CASE("Merge Sort", "[Bymerging]")
+TEST_CASE("Merge Sort", "[byMerging]")
 {
     vector<int> v = {3, 4, 2, 1, 0, 5, 10, 7, 8, 9, 6};
     v = mergeSort(v);
