@@ -14,6 +14,13 @@ enum class Color
 
 const int kNoPred = -1;
 
+bool inside(const vector<string> &maze, int r, int c)
+{
+    int h = maze.size();
+    int w = maze[0].size();
+    return 0 <= r && r < h && 0 <= c && c < w;
+}
+
 int main()
 {
     int mazeSize;
@@ -26,19 +33,22 @@ int main()
     {
         cin >> maze[r];
         int cStart = maze[r].find("S");
-        if (cStart != string::npos)
+        if (cStart != int(string::npos))
         {
             start = r * mazeSize + cStart;
         }
         int cDest = maze[r].find('D');
-        if (cStart != string::npos)
+        if (cDest != int(string::npos))
         {
-            dest = r * mazeSize + cStart;
+            dest = r * mazeSize + cDest;
         }
     }
     vector<int> distances(mazeSize * mazeSize);
     vector<int> preds(mazeSize * mazeSize, kNoPred);
     vector<Color> colors(mazeSize * mazeSize, Color::White);
+
+    vector<int> dr = {-1, 0, 1, 0};
+    vector<int> dc = {0, 1, 0, -1};
 
     queue<int> q;
     q.push(start);
@@ -47,5 +57,49 @@ int main()
 
     while (!q.empty())
     {
+        int cur = q.front();
+        q.pop();
+
+        colors[cur] = Color::Black;
+
+        int r = cur / mazeSize;
+        int c = cur % mazeSize;
+        for (int i = 0; i < int(dr.size()); ++i)
+        {
+            int tr = r + dr[i];
+            int tc = c + dc[i];
+            int t = tr * mazeSize + tc;
+            if (inside(maze, tr, tc) && maze[tr][tc] != '#' && colors[t] == Color::White)
+            {
+                q.push(t);
+                colors[t] = Color::Red;
+                preds[t] = cur;
+                distances[t] = distances[cur] + 1;
+                if (t == dest)
+                {
+                    goto breakForWhile;
+                }
+            }
+        }
+    }
+
+breakForWhile:
+    if (preds[dest] == kNoPred)
+    {
+        cout << "Unreachable\n";
+    }
+    else
+    {
+        cout << distances[dest] << "\n";
+        int cur = dest;
+        while (cur != start)
+        {
+            maze[cur / mazeSize][cur % mazeSize] = '*';
+            cur = preds[cur];
+        }
+        for (const auto e : maze)
+        {
+            cout << e << "\n";
+        }
     }
 }
