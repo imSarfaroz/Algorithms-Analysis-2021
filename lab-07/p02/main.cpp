@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -11,18 +12,18 @@ enum class State
     Intree
 };
 
+const int kNotDefined = -1;
 
 int main()
 {
     int nVer;
     cin >> nVer;
 
-    vector<vector<pair<int, int>>> graph(9);
+    vector<vector<pair<int, int>>> graph(nVer);
     char c1;
     char c2;
     int w;
 
-    const int kNotDefined = -1;
      while (cin >> c1 >> c2 >> w)
     {
         int u = c1 - 'a';
@@ -35,7 +36,7 @@ int main()
     vector<State> states(nVer, State::NotDefined);
     vector<int> distances(nVer, kNotDefined);
     vector<int> preds(nVer, kNotDefined);
-  
+    set<pair<int, int>> border;
 
     int total = 0;
     states[0] = State::Intree;
@@ -44,21 +45,16 @@ int main()
         states[v.first] = State::OnBorder;
         distances[v.first] = v.second;
         preds[v.first] = 0;
+        border.emplace(v.second, v.first);  
     }
 
     for (int i = 1; i < nVer; ++i)
     {
-        int indexMin = nVer;
-        for (int j = 0; j < nVer; j++)
-        {
-            if(states[j] == State::OnBorder && (indexMin == nVer || distances[j] < distances[indexMin]))
-            {
-                indexMin = j;
-            }
-        }
+        auto p = *border.begin();
+        border.erase(border.begin());
 
-        int u = preds[indexMin];
-        int v = indexMin;
+        int u = preds[p.second];
+        int v = p.second;
         int w = distances[v];
 
         cout << char(u + 'a') << " " << char(v + 'a') << " " << w << endl;
@@ -72,9 +68,12 @@ int main()
                 states[e.first] = State::OnBorder;
                 distances[e.first] = e.second;
                 preds[e.first] = v;
+                border.emplace(e.second, e.first);
             }
             else if(states[e.first] == State::OnBorder && e.second < distances[e.first])
             {
+                border.erase({distances[e.first], e.first});
+                border.emplace(e.second, e.first);
                 distances[e.first] = e.second;
                 preds[e.first] = v;
             }
