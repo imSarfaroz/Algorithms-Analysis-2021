@@ -34,3 +34,14 @@ TEST_CASE("quickSort()", "[SortBy_quickSort]")
     quickSort(v, 0, (v.size() - 1));
     REQUIRE(toStr(v) == "{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}");
 }
+
+TEST_CASE("countSort()", "[SortBy_countSort]")
+{
+    vector<int> v = {3, 4, 2, 1, 0, 5, 10, 7, 8, 9, 6};
+    v = countSort(v, v.size(), 11);
+    REQUIRE(toStr(v) == "{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}");
+
+    v = {1, 0, 1, 3, 4, 2, 1, 2};
+    v = countSort(v, v.size(), 5);
+    REQUIRE(toStr(v) == "{0, 1, 1, 1, 2, 2, 3, 4}");
+}

@@ -122,3 +122,53 @@ vector<int> mergeSort(std::vector<int> &v)
 
     return merge(arrayOne, arrayTwo);
 }
+
+// Quick Sort
+int partition(vector<int> &v, int p, int r)
+{
+    int q = p;
+    for (int u = p; u < r; ++u)
+    {
+        if (v[u] <= v[r])
+        {
+            swap(v[q], v[u]);
+            ++q;
+        }
+    }
+    swap(v[q], v[r]);
+    return q;
+}
+
+void quickSort(vector<int> &v, int p, int r)
+{
+    if (p < r)
+    {
+        int q = partition(v, p, r);
+        quickSort(v, p, q - 1);
+        quickSort(v, q + 1, r);
+        // return v;
+    }
+}
+
+// Count Sort
+vector<int> countSort(vector<int> &v, int n, int m)
+{
+    vector<int> count(m, 0);
+    for (int i : v)
+    {
+        ++count[i];
+    }
+
+    for (int i = 1; i < count.size(); ++i)
+    {
+        count[i] += count[i - 1];
+    }
+
+    vector<int> result(n, 0);
+    for (int i : v)
+    {
+        result[count[i] - 1] = i;
+        --count[i];
+    }
+    return result;
+}

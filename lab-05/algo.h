@@ -9,5 +9,6 @@ void insertionSort(std::vector<int> &v);
 int binarySearch(std::vector<int> &v, int x);
 std::vector<int> mergeSort(std::vector<int> &v);
 void quickSort(std::vector<int> &v, int p, int r);
+std::vector<int> countSort(std::vector<int> &v, int n, int m);
 
 #endif
