@@ -117,8 +117,7 @@ vector<int> mergeSort(std::vector<int> &v)
         arrayTwo.push_back(v[i]);
     }
 
-    arrayOne = merg
-        eSort(arrayOne);
+    arrayOne = mergeSort(arrayOne);
     arrayTwo = mergeSort(arrayTwo);
 
     return merge(arrayOne, arrayTwo);
