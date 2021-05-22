@@ -45,5 +45,6 @@ int main()
         states[v.first] = State::OnBorder;
         distances[v.first] = v.second;
         preds[v.first] = 0;
+        sasa
     }
 }
