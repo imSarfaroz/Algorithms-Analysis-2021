@@ -4,10 +4,11 @@
 
 char map[100][100];
 
+void dfs(int i, int j);
+
 int main()
 {
     int num;
-    int x, y;
 
     std::cin >> num;
     while (num--)
@@ -21,5 +22,19 @@ int main()
             }
             n++;
         }
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (map[i][j] == '*')
+                {
+                    dfs(i, j);
+                }
+            }
+        }
     }
+}
+
+void dfs(int i, int j);
+{
 }
