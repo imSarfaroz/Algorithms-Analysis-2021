@@ -36,8 +36,24 @@ int main()
 
             while (!q.empty())
             {
+                string u = q.front();
                 q.pop();
                 // Need to have a loop to check every words
-                        }
+                for (size_t i = 0; i < words.size(); ++i)
+                {
+                    const string &v = words[i];
+                    if (!simWords.count(v) && u.length() == v.length())
+                    {
+                        int diff = 0;
+                        for (size_t j = 0; j < u.length(); ++j)
+                            if (diff == 1)
+                            {
+                                // c
+                            }
+                    }
+                }
+            }
+            cout << w1 << " " << w2 << endl;
         }
     }
+}
