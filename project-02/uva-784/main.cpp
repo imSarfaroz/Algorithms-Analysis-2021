@@ -32,9 +32,16 @@ int main()
                 }
             }
         }
+
+        for (int i = 0; i <= n; i++)
+            puts(map[i]);
     }
 }
 
-void dfs(int i, int j);
+void dfs(int i, int j)
 {
+    dfs(i + 1, j);
+    dfs(i - 1, j);
+    dfs(i, j + 1);
+    dfs(i, j - 1);
 }
