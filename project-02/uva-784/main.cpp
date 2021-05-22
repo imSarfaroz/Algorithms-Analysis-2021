@@ -24,7 +24,7 @@ int main()
         }
         for (int i = 0; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < map[i][j]; j++)
             {
                 if (map[i][j] == '*')
                 {
@@ -40,6 +40,9 @@ int main()
 
 void dfs(int i, int j)
 {
+    if (map[i][j] == 'X' || map[i][j] == '#')
+        return;
+    map[i][j] = '#';
     dfs(i + 1, j);
     dfs(i - 1, j);
     dfs(i, j + 1);
