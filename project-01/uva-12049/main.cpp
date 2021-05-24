@@ -2,7 +2,6 @@
 #include <unordered_map>
 
 using namespace std;
-//Just prume the list
 
 int main()
 {

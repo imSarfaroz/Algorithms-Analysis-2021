@@ -1,24 +1,42 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 
 using namespace std;
 
-void solve(int c, int sum, const vector<int> v)
+void solve(int c, int sumOfCD, const int v, const vector<int> &num, vector<int> &result, bool &hasChecked)
 {
-    if (c == v.size())
+    if (hasChecked)
     {
-        cout << "sum: " << sum << "\n";
+        return;
+    }
+
+    if (c == num.size())
+    {
+        if (sumOfCD == v)
+        {
+            for (auto i : result)
+            {
+                cout << i << " ";
+            }
+            cout << "sum: " << sumOfCD << endl;
+            hasChecked = true;
+        }
     }
     else
     {
-        solve(c + 1, sum, v);
-        solve(c + 1, sum + v[c], v);
+        result.push_back(num[c]);
+        solve(c + 1, sumOfCD + num[c], v, num, result, hasChecked);
+        result.pop_back();
+        solve(c + 1, sumOfCD, v, num, result, hasChecked);
     }
 }
 
 int main()
 {
+
     for (int d, n; cin >> d >> n;)
     {
         vector<int> v(n);
@@ -26,7 +44,24 @@ int main()
         {
             cin >> e;
         }
+        int sum = accumulate(v.begin(), v.end(), 0);
 
-        solve(0, 0, v);
+        if (sum <= d)
+        {
+            for (auto i : v)
+            {
+                cout << i << " ";
+            }
+            cout << "sum: " << sum << endl;
+        }
+        else
+        {
+            vector<int> num;
+            bool hasChecked = false;
+            while (d--)
+            {
+                solve(0, 0, d + 1, v, num, hasChecked);
+            }
+        }
     }
 }
